@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokyoQuest | The Anti-Tourist Trap Guide</title>
+    <meta name="description" content="Escape the crowds. Discover the hidden gems of Tokyo with a local's compass.">
+    
+    <!-- Google Fonts: Elegant serif for headlines, clean sans for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #E0E0E0;
+            --accent-color: #D4AF37; /* Gold for premium feel */
+            --secondary-bg: #1E1E1E;
+            --font-head: 'Cinzel', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            font-size: 16px; /* Legible for 50s+ */
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-head);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-gold { color: var(--accent-color); }
+        .mb-2 { margin-bottom: 20px; }
+        .mb-4 { margin-bottom: 40px; }
+
+        /* Button */
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            transition: opacity 0.3s;
+            border: 1px solid var(--accent-color);
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('assets/hero_bg.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.8);
+        }
+
+        /* Comparison Section */
+        .comparison {
+            background-color: var(--secondary-bg);
+            padding: 60px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .comp-card {
+            padding: 20px;
+            border: 1px solid #333;
+            background: #252525;
+        }
+
+        .comp-card.bad { border-left: 4px solid #555; opacity: 0.7; }
+        .comp-card.good { border-left: 4px solid var(--accent-color); background: #2A2A2A; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+
+        .comp-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .comp-list li {
+            list-style: none;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .comp-card.bad .comp-list li::before { content: "✕"; position: absolute; left: 0; color: #888; }
+        .comp-card.good .comp-list li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-color); }
+
+        /* Curator Voice */
+        .curator {
+            padding: 60px 0;
+            background-color: var(--bg-color);
+        }
+        
+        .curator-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .curator-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 2px;
+            filter: grayscale(30%);
+        }
+
+        .quote-box {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 20px;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: #151515;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .step-item {
+            padding: 20px;
+        }
+        
+        .step-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 60px 0;
+            background-color: var(--bg-color);
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .course-card {
+            background-color: var(--secondary-bg);
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .course-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .course-desc {
+            font-size: 0.95rem;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Desktop Media Queries */
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .comparison-grid { grid-template-columns: 1fr 1fr; }
+            .curator-flex { flex-direction: row; }
+            .steps-grid { grid-template-columns: repeat(3, 1fr); }
+            .course-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Don't Be Just Another Tourist.</h1>
+            <p>Escape the crowds. Discover the "Hidden Gems" that only locals know.</p>
+            <a href="#courses" class="btn-primary">See the Real Tokyo</a>
+        </div>
+    </header>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="text-center mb-4">Why Walk With TokyoQuest?</h2>
+            <div class="comparison-grid">
+                <!-- Typical -->
+                <div class="comp-card bad">
+                    <span class="comp-title">Typical Tourist</span>
+                    <ul class="comp-list">
+                        <li>Crowded "Must-See" traps</li>
+                        <li>Staring at Google Maps</li>
+                        <li>Wikipedia facts</li>
+                        <li>Exhausted & Overwhelmed</li>
+                    </ul>
+                </div>
+                <!-- TokyoQuest -->
+                <div class="comp-card good">
+                    <span class="comp-title text-gold">TokyoQuest User</span>
+                    <ul class="comp-list">
+                        <li>Quiet, authentic alleys</li>
+                        <li>Intuitive Compass Navigation</li>
+                        <li>Curated Insider Stories</li>
+                        <li>Smart, Efficient Exploration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curator's Voice -->
+    <section class="curator">
+        <div class="container">
+            <div class="curator-flex">
+                <img src="assets/curator_back.jpg" alt="Local Guide" class="curator-img">
+                <div class="curator-text">
+                    <h2 class="mb-2">Curated by Locals.</h2>
+                    <div class="quote-box">
+                        <p class="mb-2">"We live here. We know that the best part of Harajuku isn't the crowded Takeshita Street—it's the rooftop forest of Omohara where the wind feels different. We know the 'Godzilla Head' in Shinjuku isn't just a monster, but a symbol of our post-war resilience."</p>
+                        <p>Let us guide you to the Tokyo we love—without the noise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="mb-4">Turn Your Phone Into a Magic Compass</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <span class="step-icon">📍</span>
+                    <h3>1. Select Area</h3>
+                    <p>Choose a neighborhood. No app download required.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-icon">🧭</span>
+                    <h3>2. Follow the Arrow</h3>
+                    <p>Use distance and direction as your only hints. Enjoy the walk.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-icon">🔓</span>
+                    <h3>3. Unlock the Story</h3>
+                    <p>Arrive at the hidden spot to reveal its secret history.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="text-center mb-4">Select Your Journey</h2>
+            <p class="text-center mb-4" style="color:#aaa;">Explore 2-3 hidden spots per area. Approx. 45-60 mins.</p>
+            
+            <div class="course-grid">
+                <!-- Shibuya -->
+                <div class="course-card">
+                    <img src="assets/shibuya_thumb.jpg" alt="Shibuya Hidden Side" class="course-img">
+                    <div class="course-info">
+                        <div>
+                            <h3 class="course-title">Shibuya: The Hidden Side</h3>
+                            <p class="course-desc">Explore "Ura-Shibu" (The Back of Shibuya). A mysterious area born from the post-war black market, completely unlike the chaotic main crossing.</p>
+                        </div>
+                        <div class="course-meta">
+                            <span class="price">$20.00</span>
+                            <a href="https://tokyo-quest.com/en/select?location=Shibuya" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Start Quest</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shinjuku -->
+                <div class="course-card">
+                    <img src="assets/shinjuku_thumb.jpg" alt="Shinjuku Secrets" class="course-img">
+                    <div class="course-info">
+                        <div>
+                            <h3 class="course-title">Shinjuku: Neon Secrets</h3>
+                            <p class="course-desc">From hidden shrines tucked between skyscrapers to the alleys of Golden Gai. Discover the deep history behind Tokyo's wildest district.</p>
+                        </div>
+                        <div class="course-meta">
+                            <span class="price">$20.00</span>
+                            <a href="https://tokyo-quest.com/en/select?location=Shinjuku" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Start Quest</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Harajuku -->
+                <div class="course-card">
+                    <img src="assets/harajuku_thumb.jpg" alt="Harajuku Nature" class="course-img">
+                    <div class="course-info">
+                        <div>
+                            <h3 class="course-title">Harajuku: Beyond Cute</h3>
+                            <p class="course-desc">A journey through nature and history. Relax at the rooftop Forest of Omohara and experience the calm greenery of Togo Shrine.</p>
+                        </div>
+                        <div class="course-meta">
+                            <span class="price">$20.00</span>
+                            <a href="https://tokyo-quest.com/en/select?location=Harajuku" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Start Quest</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ginza -->
+                <div class="course-card">
+                    <img src="assets/ginza_thumb.jpg" alt="Ginza Shadows" class="course-img">
+                    <div class="course-info">
+                        <div>
+                            <h3 class="course-title">Ginza: Shadows of Luxury</h3>
+                            <p class="course-desc">Discover Ginza beyond the boutiques. Uncover hidden shrines where fox spirits guard tradition and art intertwines with spirituality.</p>
+                        </div>
+                        <div class="course-meta">
+                            <span class="price">$20.00</span>
+                            <a href="https://tokyo-quest.com/en/select?location=Ginza" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Start Quest</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TokyoQuest. All Rights Reserved.</p>
+            <p style="margin-top:10px; font-size: 0.8rem; color: #444;">
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
